@@ -1,0 +1,92 @@
+﻿@using BasementHoofersQuiz.Models
+@model LoginViewModel
+@{
+    ViewBag.Title = "Log in";
+}
+<html>
+<head>
+    <style>
+        body {
+            background-image: url(../../Content/images/big_city_lights.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position-y: center;
+        }
+
+        #login-container {
+            background-color: rgba(250, 250, 250, 0.7);
+            margin-top: 5%;
+        }
+
+        hr, footer {
+            display: none;
+        }
+    </style>
+
+</head>
+<body>
+    @*<h2>@ViewBag.Title.</h2>*@
+    <div id="login-container" class="row">
+        <div class="col-md-8">
+            <section id="loginForm">
+                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+                    @Html.AntiForgeryToken()
+                    <h2>Want To Try Basement Hoofers Quiz ?</h2>
+                    <h4>Oh, We Woln't Let You Unless You Sign In</h4>
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-10">
+                            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <div class="checkbox">
+                                @Html.CheckBoxFor(m => m.RememberMe)
+                                @Html.LabelFor(m => m.RememberMe)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Log in" class="btn btn-default" />
+                        </div>
+                    </div>
+                    <p style="font-weight:700">
+                        @Html.ActionLink("Register as a new user", "Register", null, new { @style = "color:red;" })
+                    </p>
+                    @* Enable this once you have account confirmation enabled for password reset functionality
+                        <p>
+                            @Html.ActionLink("Forgot your password?", "ForgotPassword")
+                        </p>*@
+                }
+            </section>
+        </div>
+        <div class="col-md-4">
+            <section id="socialLoginForm" style="line-height:30px;">
+                @*@Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })*@
+                <h3>About Quiz</h3>
+                <h4>This quiz is for people Who loves the underground music.</h4>
+                <h4>There are Three main categories inside. </h4>
+                <h4>Multiple choice tests consist of questions about various artists, festivals, genres and record labels. </h4>
+                <h4>Just chose one and give it a go. Show us how cool you are!</h4>
+            </section>
+        </div>
+    </div>
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+</body>
+</html>

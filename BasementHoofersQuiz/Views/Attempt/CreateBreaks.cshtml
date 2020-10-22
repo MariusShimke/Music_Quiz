@@ -1,0 +1,329 @@
+﻿@model BasementHoofersQuiz.Models.AttemptModel
+@using Microsoft.AspNet.Identity
+@{
+    ViewBag.Title = "CreateBreaks";
+}
+<head>
+    <style type="text/css">
+         body {
+            background-image: url(../../Content/images/breaksBackgroundBlackDoor.png);
+            background-size: 100% 200%;
+        }
+
+        hr, footer {
+            display: none;
+        }
+
+        a:hover {
+            text-decoration: none;
+        }
+        #green-menu {
+            max-width:400px;
+            background-color:black;            
+            border:10px solid black;
+            border-radius:10px 10px 10px 10px;
+            box-shadow: 5px 5px 50px 10px black;
+
+        }
+        #left-sub-menu {
+            background-image: url(../../Content/images/panelC-Bcg.png);
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            padding-right:5px;
+            padding-top:15px;
+            padding-bottom:15px;
+            list-style: none;
+            height:100%;
+            min-height: 250px;
+            border-radius:5px 0px 0px 5px;
+        }
+        .tech-left-btn:hover {
+            color:green;
+            box-shadow: 5px 5px 50px 10px green;
+        }
+
+        .tech-left-btn {
+            border:2px solid gray;
+            border-radius:5px;
+            margin-bottom:1px;
+            text-align: center;
+            color:white;
+            font-weight: 900;
+            min-height:70px;
+            padding-top:20px;
+            
+        }
+         #right-sub-menu {
+            background-image: url(../../Content/images/blackSteel.png);
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            padding-left:5px;
+           padding-top:15px;
+            padding-bottom:15px;
+            list-style: none;
+            height:100%;
+            min-height: 250px;
+            border-radius:0px 5px 0px 5px;
+        }
+        .tech-right-btn {
+             border:2px solid gray;
+            border-radius:5px;
+            margin-bottom:1px;    
+            text-align: center;
+            color: white;
+            font-weight: 900;
+            min-height:70px;
+            padding-top:20px;
+            
+        }
+
+            .tech-right-btn:hover {
+                box-shadow: 5px 5px 50px 10px green;
+                color:green;
+            }
+             #center-sub-menu {
+                background-image: url(../../Content/images/greenScreen.jpg);
+                background-size:100% 150px;
+                background-repeat: no-repeat;
+                padding-top: 10px;
+                bottom: 0;                
+                padding-right: 0;
+                padding-left: 0;                
+                min-height:150px;
+                border:5px solid black;
+                
+                
+            }
+        
+              .item , #rules {
+            width: 90%;
+            margin: 0 auto;
+            height: 100%;
+            padding: 20px;
+            color:greenyellow;
+            
+        }
+
+        #rules {           
+            padding: 10px;
+            color: greenyellow;
+            margin: 0 auto;
+            height: 100%;
+            width:90%;            
+        }
+        #techForm {
+        text-align:center;
+        }
+        #techResult {
+            background-color: transparent;
+            color: greenyellow;
+            width: 20px;
+            text-align: right;
+            border: none;
+        }
+         #createAttemptBtn {
+            margin: 0 auto;
+            padding: 5px;
+            border: 2px solid rgba(0, 255, 0, 0.5);
+            color: greenyellow;
+            font-weight: 900;
+            border-radius: 5px;
+            background-color: transparent;
+        }
+
+            #createAttemptBtn:hover {
+                box-shadow: 5px 5px 50px 10px greenyellow;
+            }
+    </style>  
+</head>
+<body>
+
+    <h2 style="color:white;">'Breaks' quiz</h2>
+
+    <div class="container-fluid ">
+        <div id="green-menu" class="row content" style="margin:0 auto">
+            <div id="center-sub-menu" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div id="rules">
+                    <h6>10 Breaks category questions</h6>
+                    <h6>There is no time limit</h6>
+                    <h6>Use PREV-NEXT or Indicators</h6>
+                    <h6>Submit when done</h6>
+                    <h6>Press FINISH</h6>
+                </div>
+                <div id="myCarousel" class="carousel slide hidden" data-ride="carousel" data-interval="false" style="color:white;background-color:transparent;">
+                    <!-- Indicators -->
+                    <ol class="carousel-indicators" style="position:absolute;bottom:0;">
+                        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                        <li data-target="#myCarousel" data-slide-to="1"></li>
+                        <li data-target="#myCarousel" data-slide-to="2"></li>
+                        <li data-target="#myCarousel" data-slide-to="3"></li>
+                        <li data-target="#myCarousel" data-slide-to="4"></li>
+                        <li data-target="#myCarousel" data-slide-to="5"></li>
+                        <li data-target="#myCarousel" data-slide-to="6"></li>
+                        <li data-target="#myCarousel" data-slide-to="7"></li>
+                        <li data-target="#myCarousel" data-slide-to="8"></li>
+                        <li data-target="#myCarousel" data-slide-to="9"></li>
+                    </ol>
+                    <form method="post" name="buttons" id="quiz" onsubmit="return false">
+                        <!-- Wrapper for slides -->
+                        <div class="carousel-inner" style="margin:0 auto;padding-bottom:15px;">
+                            <div class="item active">
+                                <div class="question">DJ Hype is a ____ </div>
+                                <input type="radio" name="group1" value="wrong">Reggae Singer<br>
+                                <input type="radio" name="group1" value="wrong">Dub DJ<br>
+                                <input type="radio" name="group1" value="correct">Drum&amp;Bass DJ<hr>
+                            </div>
+                            <div class="item">
+                                <div class="question">Drum&amp;Bass record label</div>
+                                <input type="radio" name="group2" value="wrong">Sony RCA records<br>
+                                <input type="radio" name="group2" value="correct">Methalheads<br>
+                                <input type="radio" name="group2" value="wrong">Jad Records<hr>
+                            </div>
+                            <div class="item">
+                                <div class="question">UK jungle and drum&amp;bass DJ/producer</div>
+                                <input type="radio" name="group3" value="correct">Aphrodite<br>
+                                <input type="radio" name="group3" value="wrong">Stanton Warriors<br>
+                                <input type="radio" name="group3" value="wrong">Boujou Bonton<hr>
+                            </div>
+                            <div class="item">
+                                <div class="question">BreakBeat Dj ____</div>
+                                <input type="radio" name="group4" value="correct">Stanton Warriors<br>
+                                <input type="radio" name="group4" value="wrong">Goldy<br>
+                                <input type="radio" name="group4" value="wrong">Sizzla<hr>
+                            </div>
+                            <div class="item">
+                                <div class="question">What does DJ Congo Natty plays?</div>
+                                <input type="radio" name="group5" value="correct">Ragga-Jungle<br>
+                                <input type="radio" name="group5" value="wrong">Reggae<br>
+                                <input type="radio" name="group5" value="wrong">Dub<hr>
+                            </div>
+                            <div class="item">
+                                <div class="question">One of the biggest Drum&amp;Bass festivals?</div>
+                                <input type="radio" name="group6" value="wrong">Electric Picnic<br>
+                                <input type="radio" name="group6" value="correct">Hospitality<br>
+                                <input type="radio" name="group6" value="wrong">Wald Healing<hr>
+                            </div>
+                            <div class="item">
+                                <div class="question">Reggae and dub music record label</div>
+                                <input type="radio" name="group7" value="correct">Trojan Records<br>
+                                <input type="radio" name="group7" value="wrong">[minus]<br>
+                                <input type="radio" name="group7" value="wrong">Sony RCA records<hr>
+                            </div>
+                            <div class="item">
+                                <div class="question">What music does Plum DJs spin?</div>
+                                <input type="radio" name="group8" value="wrong">Drum&amp;Bass<br>
+                                <input type="radio" name="group8" value="correct">Breakbeat<br>
+                                <input type="radio" name="group8" value="wrong">Dub<hr>
+                            </div>
+                            <div class="item">
+                                <div class="question">DJ Zink is a ____ </div>
+                                <input type="radio" name="group9" value="wrong">Dub DJ<br>
+                                <input type="radio" name="group9" value="wrong">Reggae musicion<br>
+                                <input type="radio" name="group9" value="correct">D&amp;B DJ<hr>
+                            </div>
+                            <div class="item">
+                                <div class="question">Who produced D&amp;B track "Incredible"</div>
+                                <input type="radio" name="group10" value="wrong">Congo Natty<br>
+                                <input type="radio" name="group10" value="correct">General Levy<br>
+                                <input type="radio" name="group10" value="wrong">Pendulum<hr>
+                            </div>                     
+                        </div>
+                        @*<button class="submit" onclick="return submitClick();" type="submit">Submit</button>*@
+                    </form>
+                </div><!--End of Carousel-->
+                @using (Html.BeginForm())
+            {
+                    @Html.AntiForgeryToken()
+
+                    <div id="techForm" class="form-horizontal hidden item">
+                       
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group hidden">
+                            @Html.LabelFor(model => model.quizId, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(model => model.quizId, new { @Value = 3 })
+                                @Html.ValidationMessageFor(model => model.quizId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group hidden">
+                            @Html.LabelFor(model => model.UserId, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(model => model.UserId, new { @Value = User.Identity.GetUserId() })
+                            </div>
+                        </div>
+
+                        <div  class="form-group">
+                            <p></p>@Html.LabelFor(model => model.quizResult, htmlAttributes: new { @class = "control-label" })
+                            <div>
+                                @Html.TextBoxFor(model => model.quizResult, new { @id = "techResult", @name = "techResult"})/10
+                                @Html.ValidationMessageFor(model => model.quizResult, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group hidden">
+                            @Html.LabelFor(model => model.attemptDateTime, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.attemptDateTime, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.attemptDateTime, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <input id="createAttemptBtn" type="submit" value="FINISH" class="" />
+                    </div>
+                }
+            </div>
+            <div id="left-sub-menu" class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                <div class="tech-left-btn" href="#myCarousel" data-slide="prev">
+                    Previous
+                </div>
+                <a href="~/Home/Index"><div class="tech-left-btn">Back</div></a>
+                <div id="show-rules" class="tech-left-btn">Rules</div>                
+            </div>
+            <div id="right-sub-menu" class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                <div class="tech-right-btn" href="#myCarousel" data-slide="next">Next</div>
+                <div id="start" class="tech-right-btn">Start</div>
+                <div class="tech-right-btn" onclick="return submitClick();">Submit</div>
+            </div>
+        </div>
+    </div>
+</body>
+@section Scripts {
+    <script>
+        var resultMessage = 0;
+        function submitClick()
+          {
+                result = 0;
+                for(var i = 1; i <= 45; i++) {
+                  var radios = document.getElementsByName('group'+i);
+                  for(var j = 0; j < radios.length; j++) {
+                    var radio = radios[j];
+                    if(radio.value == "correct" && radio.checked) {
+                        result++;
+                    }
+                  }
+                }
+
+                document.getElementById('techResult').value = result;
+
+                    $("#techForm").removeClass("hidden");
+                    $(".carousel").addClass("hidden");
+                    $('#rules').addClass("hidden");
+
+        }/*end of function*/
+
+
+        $("#start").click(function (e) {
+            $(".carousel").removeClass("hidden");
+            $('#rules').addClass("hidden");
+            $('#techForm').addClass("hidden");
+        });
+        $("#show-rules").click(function (e) {
+            $("#rules").removeClass("hidden");
+            $(".carousel").addClass("hidden");
+            $('#techForm').addClass("hidden");
+        });
+
+    </script>
+}
+
+

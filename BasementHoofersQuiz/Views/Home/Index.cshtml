@@ -1,0 +1,49 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+<html>
+<head>
+    <style> 
+        body {
+            background-image: url(../../Content/images/3doorsPNG.png);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: initial;
+            background-color:black;             
+        }
+        
+         #door-container {            
+            width:100%;
+            height:100%;
+            border:1px solid red;            
+        }
+      
+        footer, hr {
+            display: none;
+        }
+                
+    </style>
+
+</head>
+<body >
+    <div class="row" style="height:100%; width:100%; margin-bottom: 1px;position:absolute;overflow:hidden">
+        <a href="~/Attempt/CreateTech">
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" id="door1" style="height:100%;">
+            </div>
+        </a>
+        <a href="~/Attempt/CreatePsy">
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" id="door2" style="height:100%;">
+            </div>
+        </a>
+        <a href="~/Attempt/CreateBreaks">
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" id="door3" style="height:100%;">
+            </div>
+        </a>
+    </div>
+@section Scripts
+{
+    
+}
+  
+</body>
+</html>

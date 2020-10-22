@@ -1,0 +1,92 @@
+﻿@model IEnumerable<BasementHoofersQuiz.Models.AttemptModel>
+@using Microsoft.AspNet.Identity
+@{
+    ViewBag.Title = "Index";
+}
+<html>
+<head>
+    <style>
+        body {
+            background-image: url(../../Content/images/big_city_lights.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position-y: center;
+            height:auto;          
+        }
+
+        #result-container {
+            background-color: rgba(250, 250, 250, 0.7);
+            margin-top: 5%;
+            padding: 15px;
+            font-weight:900;
+            height:100%;
+        }
+        .blue-text {
+        color:blue;
+        }
+        hr, footer {
+            display: none;
+        }
+    </style>
+
+</head>
+<body>
+    <div id="result-container">
+        <h2>All Your Results</h2>
+        <h6 style="font-weight:900;"><span style="color:red">O</span>-Not cool<span style="color:blue">O</span>-Regular <span style="color:gold">O</span>-Very cool</h6>
+
+        <p>
+            <a href="~/Home/Index" style="color:palevioletred;text-decoration:none;"><div>Try Another One</div></a>
+            @*@Html.ActionLink("Try Another One", "Index", "Home", new {style= "color:palevioletred" })*@
+        </p>
+        <table class="table">
+            <tr class="blue-text">
+                <th>
+                    @Html.DisplayNameFor(model => model.attemptDateTime)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.quizId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.quizResult)
+                </th>
+                <th class="hidden"></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.attemptDateTime)
+                    </td>
+                    <td>
+                        @if (item.quizId.ToString() == "1")
+                {<p style="text-shadow: 1px 1px #00ffff;">Tech Quiz</p>}
+                        @if (item.quizId.ToString() == "2")
+                {<p style="text-shadow: 1px 1px #ff00ff;">Psy Quiz</p>}
+                        @if (item.quizId.ToString() == "3")
+                {<p style="text-shadow: 1px 1px yellowgreen;">Breaks Quiz</p>}
+                        @*@Html.DisplayFor(modelItem => item.quizId)*@
+                    </td>
+
+                    <td>
+                        @{int result = Int32.Parse(item.quizResult);}
+                        @if (result <= 3)
+                        {<p style="color:red;">@Html.DisplayFor(modelItem => item.quizResult)/10</p>}
+                        else if (result > 3 && result <= 6)
+                        {<p style="color:blue;">@Html.DisplayFor(modelItem => item.quizResult)/10</p>}
+                        else if (result > 6 && result <= 10)
+                        {<p style="color:gold;">@Html.DisplayFor(modelItem => item.quizResult)/10</p>}
+                    </td>
+                    <td class="hidden"><!--Temporary Hidden-->
+                        @Html.ActionLink("Edit", "Edit", new { id = item.attemptId }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.attemptId }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.attemptId })
+                    </td>
+                </tr>
+                            }
+
+        </table>
+    </div>
+</body>
+</html>

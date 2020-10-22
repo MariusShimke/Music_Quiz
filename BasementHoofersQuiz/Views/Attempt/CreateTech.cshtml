@@ -1,0 +1,361 @@
+﻿@model BasementHoofersQuiz.Models.AttemptModel
+@using Microsoft.AspNet.Identity
+@{
+    ViewBag.Title = "CreateTech";
+}
+
+
+<head>
+   
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style type="text/css">
+        body {
+            background-image: url(../../Content/images/whtDoor.png);
+            background-size: 200% 200%;           
+        }
+        hr , footer {
+            display: none;
+        }
+        a:hover {
+        text-decoration:none;
+        }
+        
+        #left-sub-menu {
+            background-image: url(../../Content/images/tech-sub-menu-left.png);
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            padding-bottom: 15px;
+            padding-top: 15px;
+            padding-left: 1px;
+            padding-right: 2px;
+            list-style: none;
+            margin-bottom: 0;
+            min-height: 150px;
+        }
+
+        .tech-left-btn:hover {
+            background-image: url(../../Content/images/leftButton2.png);
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            box-shadow: 5px 5px 50px 10px #00ffff;
+        }
+
+        .tech-left-btn {
+            background-image: url(../../Content/images/leftButton.png);
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            width: 100%;
+            height: auto;
+            padding-top: 12%;
+            padding-bottom: 12%;
+            margin-left: 0px;
+            margin-right: 0px;
+            text-align: center;
+            color: rgba(0, 255, 255, 0.8);
+            font-weight: 900;
+        }
+
+        #blue-menu {
+            background-image: url(../../Content/images/tech-sub-menu-center.png);
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            padding: 0;
+            max-width: 900px;
+            box-shadow: 5px 5px 50px 10px gray;
+            border:2px solid gray;
+        }
+
+        #center-sub-menu {
+            padding-top: 15px;
+            bottom: 0;
+            margin-bottom: 10px;
+            padding-right: 0;
+            padding-left: 0;
+        }
+
+        #right-sub-menu {
+            background-image: url(../../Content/images/tech-sub-menu-right.png);
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            padding-bottom: 15px;
+            padding-top: 15px;
+            padding-left: 2px;
+            padding-right: 1px;
+            list-style: none;
+            margin-bottom: 0;
+            min-height: 150px;
+        }
+
+        .tech-right-btn {
+            background-image: url(../../Content/images/rightButton.png);
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            width: 100%;
+            height: 100%;
+            padding-top: 12%;
+            padding-bottom: 12%;
+            margin-left: 0px;
+            margin-right: 5px;
+            margin-bottom: 0;
+            text-align: center;
+            color: rgba(0, 255, 255, 0.8);
+            font-weight: 900;
+        }
+
+            .tech-right-btn:hover {
+                background-image: url(../../Content/images/rightButton2.png);
+                background-size: 100% 100%;
+                background-repeat: no-repeat;
+                box-shadow: 5px 5px 50px 10px #00ffff;
+            }
+
+        .item {
+            width: 300px;
+            margin: 0 auto;
+            height: 100%;
+            padding-bottom:20px;
+            background: rgba(0, 255, 255, 0.5);
+        }
+        #rules {
+            padding-top:15px;
+            padding-left:10px;
+            color:white;
+            width: 300px;
+            margin: 0 auto;
+            height: 100%;
+            background: rgba(0, 255, 255, 0.5);
+        }
+        #techResult {
+            background-color:transparent;
+            color:white;
+            width:20px;
+            text-align:right;
+            border:none;
+        }
+        #createAttemptBtn {
+        margin:0 auto;
+        padding:10px;
+        border:2px solid rgba(0, 255, 255, 0.5);
+        color:white;
+        font-weight:900;
+        border-radius:5px;
+        background-color:transparent;
+        }
+            #createAttemptBtn:hover {
+            box-shadow: 5px 5px 50px 10px #00ffff;
+            }
+    </style>
+</head>
+<body>
+    <h2>'TECH' quiz</h2>
+    <div class="container-fluid ">
+        <div id="blue-menu" class="row content" style="margin:0 auto">
+            <div id="left-sub-menu" class="col-xs-2 col-sm-2 col-md-2 col-lg-2 sidenav">
+                <a href="~/Home/Index"><div class="tech-left-btn">Back</div></a>
+                <div id="show-rules" class="tech-left-btn">Rules</div>
+                <div class="tech-left-btn" href="#myCarousel" data-slide="prev">
+                    Previous
+                </div>
+            </div>
+            <!--????????????????????????????????---CAROUSEL--------???????????????????????????????????????????????????-->
+            <div id="center-sub-menu" class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+                <div id="rules">
+                    <h6>10 Tech category questions</h6>
+                    <h6>There is no time limit</h6>
+                    <h6>Use PREV-NEXT or Indicators</h6>
+                    <h6>Submit when done</h6>
+                    <h6>Press FINISH</h6>
+                </div>
+                <div id="myCarousel" class="carousel slide hidden" data-ride="carousel" data-interval="false" style="color:white;background-color:transparent;">
+                    <!-- Indicators -->
+                    <ol class="carousel-indicators" style="position:absolute;bottom:0;">
+                        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                        <li data-target="#myCarousel" data-slide-to="1"></li>
+                        <li data-target="#myCarousel" data-slide-to="2"></li>
+                        <li data-target="#myCarousel" data-slide-to="3"></li>
+                        <li data-target="#myCarousel" data-slide-to="4"></li>
+                        <li data-target="#myCarousel" data-slide-to="5"></li>
+                        <li data-target="#myCarousel" data-slide-to="6"></li>
+                        <li data-target="#myCarousel" data-slide-to="7"></li>
+                        <li data-target="#myCarousel" data-slide-to="8"></li>
+                        <li data-target="#myCarousel" data-slide-to="9"></li>
+                    </ol>
+                    <form method="post" name="buttons" id="quiz" onsubmit="return false">
+                        <!-- Wrapper for slides -->
+                        <div class="carousel-inner" style="margin:0 auto;padding-bottom:15px;">
+                            <div class="item active">
+                                <div class="question">Jeff Mills is a ____ </div>
+                                <input type="radio" name="group1" value="wrong">House DJ<br>
+                                <input type="radio" name="group1" value="wrong">Electro DJ<br>
+                                <input type="radio" name="group1" value="correct">Techno DJ<hr>
+                            </div>
+                            <div class="item">
+                                <div class="question">City AKA Techno emerge city</div>
+                                <input type="radio" name="group2" value="wrong">Brooklyn<br>
+                                <input type="radio" name="group2" value="correct">Detroit<br>
+                                <input type="radio" name="group2" value="wrong">Los Angeles<hr>
+                            </div>
+                            <div class="item">
+                                <div class="question">DJ aka Plastikman?</div>
+                                <input type="radio" name="group3" value="correct">Richie Hawtin<br>
+                                <input type="radio" name="group3" value="wrong">Ben Clock<br>
+                                <input type="radio" name="group3" value="wrong">Sven Vath<hr>                              
+                            </div>
+                            <div class="item">
+                                <div class="question">Electro Dj Miss ____</div>
+                                <input type="radio" name="group4" value="correct">Kittin<br>
+                                <input type="radio" name="group4" value="wrong">Dynamite<br>
+                                <input type="radio" name="group4" value="wrong">Europe<hr>
+                            </div>
+                            <div class="item">
+                                <div class="question">What DJ Tiesto plays?</div>
+                                <input type="radio" name="group5" value="correct">Trance or House<br>
+                                <input type="radio" name="group5" value="wrong">Funky House<br>
+                                <input type="radio" name="group5" value="wrong">Minimal Techno<hr>
+                            </div>
+                            <div class="item">
+                                <div class="question">One of the biggest Techno festivals</div>
+                                <input type="radio" name="group6" value="wrong">White Sensation<br>
+                                <input type="radio" name="group6" value="correct">Time Warp<br>
+                                <input type="radio" name="group6" value="wrong"> Wald Healing<hr>
+                            </div>
+                            <div class="item">
+                                <div class="question">DJ Vitalic is a ____</div>
+                                <input type="radio" name="group7" value="correct">Electro House DJ<br>
+                                <input type="radio" name="group7" value="wrong">Hard Techno DJ<br>
+                                <input type="radio" name="group7" value="wrong">Acid Techno DJ<hr>
+                            </div>
+                            <div class="item">
+                                <div class="question">One of the biggest House festivals</div>
+                                <input type="radio" name="group8" value="wrong">Time Warp<br>
+                                <input type="radio" name="group8" value="correct">White Sensation<br>
+                                <input type="radio" name="group8" value="wrong">Freqs of Nature<hr>
+                            </div>
+                            <div class="item">
+                                <div class="question">DJ Sasha is a ____ </div>
+                                <input type="radio" name="group9" value="wrong">Hard Techno DJ<br>
+                                <input type="radio" name="group9" value="wrong">Acid Techno DJ<br>
+                                <input type="radio" name="group9" value="correct">Progresive House DJ<hr>
+                            </div>
+                            <div class="item">
+                                <div class="question">Famous Trance DJ</div>
+                                <input type="radio" name="group10" value="wrong">Lauren Garnier<br>
+                                <input type="radio" name="group10" value="correct">Armin van Buuren<br>
+                                <input type="radio" name="group10" value="wrong">Rodhad<hr>
+                            </div>                            
+                        </div>
+                        @*<button class="submit" onclick="return submitClick();" type="submit">Submit</button>*@
+                    </form>                   
+                </div><!--End of Carousel-->
+                <!--////////////////////////////////////////////////////////////////////////////////-->
+                @using (Html.BeginForm("CreateTech", "Attempt"))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div id="techForm" class="form-horizontal hidden item">
+                        <h4></h4>
+                        <hr />
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group hidden">
+                            @Html.LabelFor(model => model.quizId, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(model => model.quizId, new { @Value = 1 })
+                                @Html.ValidationMessageFor(model => model.quizId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group hidden">
+                            @Html.LabelFor(model => model.UserId, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(model => model.UserId, new { @Value = User.Identity.GetUserId() })
+                                @Html.ValidationMessageFor(model => model.UserId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="text-align:center;color:white">
+                            @Html.LabelFor(model => model.quizResult, htmlAttributes: new { @class = "control-label" })
+                            <div class="">                                                          
+                                @Html.TextBoxFor(model => model.quizResult, new { @id = "techResult", @name = "techResult", style = "bachground-color:red" })/10
+                                @Html.ValidationMessageFor(model => model.quizResult, "", new { @class = "text-danger" })
+                            </div>
+                            <input id="createAttemptBtn" type="submit" value="FINISH" class=""  />
+                        </div>
+
+
+                    </div><!--End of FORM-->
+                }
+            </div>
+            <!--???????????????????????????????????????????????????????????????????????????????????????????-->
+          
+             <div id="right-sub-menu" class="col-xs-2 col-sm-2 col-md-2 col-lg-2 sidenav">
+                <div id="start" class="tech-right-btn">Start</div>
+                <div class="tech-right-btn" onclick="return submitClick();">Submit</div>
+                <div class="tech-right-btn" href="#myCarousel" data-slide="next">Next</div>
+            </div>
+        </div>
+    </div><!--End of CONTAINER-->
+    
+    @*<!--Code addapted from http://jsfiddle.net/g45nG/1/-->*@
+    @*<form name="quiz" method="post" name="buttons" id="quiz" onsubmit="return false">
+
+            <div class="question">This is My Question No.1 ?</div>
+            <input type="radio" name="group1" value="wrong"> Josh<br>
+            <input type="radio" name="group1" value="wrong"> Amanda<br>
+            <input type="radio" name="group1" value="correct"> Josh y Amanda<hr>
+
+            <div class="question">This is My Question No.1 ?</div>
+            <input type="radio" name="group2" value="wrong">Un familia amigo<br>
+            <input type="radio" name="group2" value="wrong">Un gato<br>
+            <input type="radio" name="group2" value="correct">Un amable joven de la agencia de bienes raíces<hr>
+
+            <div class="question">This is My Question No.1 ?</div>
+            <input type="radio" name="group3" value="wrong">Josh<br>
+            <input type="radio" name="group3" value="wrong"> Petey<br>
+            <input type="radio" name="group3" value="correct">Josh y Petey<hr>
+
+            <button class="submit" onclick="return submitClick();" type="submit">Submit</button>
+
+        </form>*@
+    
+</body>
+@section Scripts {
+    <script>
+        var resultMessage = 0;
+        function submitClick()
+          {
+                result = 0;
+                for(var i = 1; i <= 45; i++) {
+                  var radios = document.getElementsByName('group'+i);
+                  for(var j = 0; j < radios.length; j++) {
+                    var radio = radios[j];
+                    if(radio.value == "correct" && radio.checked) {
+                        result++;
+                    }
+                  }
+                }
+                
+                document.getElementById('techResult').value = result;
+
+                    $("#techForm").removeClass("hidden");
+                    $(".carousel").addClass("hidden");
+                    $('#rules').addClass("hidden");
+
+        }/*end of function*/
+
+
+        $("#start").click(function (e) {
+            $(".carousel").removeClass("hidden");
+            $('#rules').addClass("hidden");
+            $('#techForm').addClass("hidden");
+        });
+        $("#show-rules").click(function (e) {
+            $("#rules").removeClass("hidden");
+            $(".carousel").addClass("hidden");
+            $('#techForm').addClass("hidden");
+        });
+
+    </script>
+}
+
